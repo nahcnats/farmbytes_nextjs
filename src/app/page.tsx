@@ -9,6 +9,7 @@ import {
 export default async function Home() {
   const queryClient = new QueryClient();
 
+  // The results of this query will be cached like a normal query
   await queryClient.prefetchQuery({
     queryKey: ['products'],
     queryFn: getProducts,
