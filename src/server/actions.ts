@@ -1,18 +1,18 @@
 import { TProduct } from "@/models/Product";
 
-export const getGetProducts = async (): Promise<TProduct[] | undefined> => {
+export const getProducts = async () => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/products`);
 
         const products = await response.json();
 
-        return products;
+        return products.products;
     } catch (error: any) {
-        console.log(error?.message);
+        throw error?.message;
     }
 }
 
-export const getProduct = async (id: number): Promise<TProduct | undefined> => {
+export const getProduct = async (id: number) => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/products${id}`);
 
@@ -20,11 +20,11 @@ export const getProduct = async (id: number): Promise<TProduct | undefined> => {
 
         return product;
     } catch (error: any) {
-        console.log(error?.message);
+        throw error?.message;
     }
 }
 
-export const addProduct = async (data: TProduct): Promise<string | undefined> => {
+export const addProduct = async (data: TProduct) => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/products}`, {
             method: 'POST',
@@ -41,10 +41,8 @@ export const addProduct = async (data: TProduct): Promise<string | undefined> =>
             })
         });
 
-        const product = await response.json();
-
-        return product;
+        return response.statusText;
     } catch (error: any) {
-        console.log(error?.message);
+        throw error?.message;
     }
 }
