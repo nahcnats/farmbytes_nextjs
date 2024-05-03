@@ -16,6 +16,11 @@ export default async function Home() {
 
   return (
     <main>
+      {/* 
+        HydrationBoundary adds a previously dehydrated state into the queryClient 
+        that would be returned by useQueryClient(). If the client already contains data, 
+        the new queries will be intelligently merged based on update timestamp.
+      */}
       <HydrationBoundary state={dehydrate(queryClient)}>
         <ProductList />
       </HydrationBoundary>
