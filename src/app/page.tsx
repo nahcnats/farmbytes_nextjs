@@ -4,7 +4,7 @@ import {
   dehydrate,
   HydrationBoundary,
   QueryClient
-} from '@tanstack/react-query'
+} from '@tanstack/react-query';
 
 export default async function Home() {
   const queryClient = new QueryClient();
