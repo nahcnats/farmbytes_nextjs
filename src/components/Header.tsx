@@ -8,7 +8,7 @@ export default function Header() {
                 <div>
                     <h1 className='text-lg'>Farmbytes Assessment</h1>
                 </div>
-                <div className='flex flex-row gap-8'>
+                <div className='flex flex-row gap-8 text-base'>
                     <Link href="/">Home</Link>
                     <Link href="/">Add Product</Link>
                 </div>

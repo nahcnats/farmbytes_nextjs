@@ -4,9 +4,9 @@ export const getProducts = async () => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/products`);
 
-        const products = await response.json();
+        const { products}  = await response.json();
 
-        return products.products;
+        return products;
     } catch (error: any) {
         throw error?.message;
     }

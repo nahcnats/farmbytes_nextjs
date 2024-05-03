@@ -21,12 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ReactQueryProvider>
-          <Toaster />
           <Header />
           <div className="p-8">
             {children}
           </div>
-          
+          <Toaster />
         </ReactQueryProvider>
       </body>
     </html>
