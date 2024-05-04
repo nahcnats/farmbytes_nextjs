@@ -1,3 +1,4 @@
+import { TAddProductProps } from "@/hooks/useAddProduct";
 import { TProduct } from "@/models/Product";
 
 export const getProducts = async () => {
@@ -24,7 +25,7 @@ export const getProduct = async (id: number) => {
     }
 }
 
-export const addProduct = async (data: TProduct) => {
+export const addProduct = async (data: TAddProductProps) => {
     try {
         const response = await fetch(`${process.env.BASE_URL}/products}`, {
             method: 'POST',
@@ -37,7 +38,6 @@ export const addProduct = async (data: TProduct) => {
                 description: data.description,
                 price: data.price,
                 thumbnail: data.thumbnail,
-                images: data.images
             })
         });
 

@@ -10,7 +10,7 @@ export default function Header() {
                 </div>
                 <div className='flex flex-row gap-8 text-base'>
                     <Link href="/">Home</Link>
-                    <Link href="/">Add Product</Link>
+                    <Link href="/add">Add Product</Link>
                 </div>
             </nav>
         </header>
