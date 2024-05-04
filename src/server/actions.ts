@@ -1,10 +1,11 @@
+import { server } from '@/lib/utils';
 import { TAddProductProps } from '@/types/addProductProps';
 
 export const getProducts = async () => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products`);
+        const response = await server.get(`/products/?categoryId=18`);
 
-        const { products}  = await response.json();
+        const products = response.data;
 
         return products;
     } catch (error: any) {
@@ -14,11 +15,9 @@ export const getProducts = async () => {
 
 export const getProduct = async (id: number) => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`);
+        const response = await server.get(`/products/${id}`);
 
-        const product = await response.json();
-
-        // console.log('product', product)
+        const product = response.data;
 
         return product;
     } catch (error: any) {
@@ -28,7 +27,7 @@ export const getProduct = async (id: number) => {
 
 export const addProduct = async (data: TAddProductProps) => {
     try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/add`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -39,10 +38,15 @@ export const addProduct = async (data: TAddProductProps) => {
                 description: data.description,
                 price: data.price,
                 thumbnail: data.thumbnail,
+                categoryId: 18
             })
         });
 
-        return response.statusText;
+        const status = await response.json();
+
+        console.log('status', status)
+
+        return status;
     } catch (error: any) {
         throw error?.message;
     }

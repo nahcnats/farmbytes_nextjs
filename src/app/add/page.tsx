@@ -3,6 +3,8 @@ import React from 'react';
 
 export default function AddProductPage() {
     return (
-        <AddProductForm />
+        <div className='mx-auto w-[400px] md:w-[600px]'>
+            <AddProductForm />
+        </div>
     );
 }

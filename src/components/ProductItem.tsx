@@ -31,11 +31,10 @@ export default function ProductItem({id} : {id: number}) {
             if (!thumbnail) return;
             return (
                 <Link href={`/product/${id}`}>
-                    <img
+                    <Image
                         src={thumbnail}
                         alt={title}
-                        // objectFit='cover'
-                        objectFit="contain"
+                        objectFit='cover'
                         width={800}
                         height={800}
                         className={cn(

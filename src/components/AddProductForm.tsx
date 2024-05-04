@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button"
 import {
     Form,
     FormControl,
@@ -14,9 +13,12 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form"
-import { Input } from "@/components/ui/input"
-import { useQueryClient } from '@tanstack/react-query';
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { SaveButton } from './SaveButton';
+import { useAddProduct } from '@/hooks/useAddProduct';
+import { toast } from './ui/use-toast';
+import { useRouter } from 'next/navigation'
 
 const formSchema = z.object({
     title: z.string().min(2, {
@@ -25,16 +27,18 @@ const formSchema = z.object({
     description: z.string().min(2, {
         message: "Description must be at least 2 characters.",
     }),
-    price: z.number(),
+    price: z.number({
+        required_error: "Price is required",
+        invalid_type_error: "Price must be a number",
+    }),
     thumbnail: z.string().min(2, {
         message: "Thumpbnail must be at least 2 characters.",
     }),
 });
 
 export default function AddProductForm() {
-    const queryClient = useQueryClient();
-    const [toggleSave, setToggleSave] = useState(false);
-    
+    const { mutateAsync } = useAddProduct();
+    const router = useRouter();
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -45,10 +49,23 @@ export default function AddProductForm() {
         },
     });
 
-    function onSubmit(values: z.infer<typeof formSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        console.log(values)
+    async function onSubmit(values: z.infer<typeof formSchema>) {
+        try {
+            await mutateAsync({
+                title: values.title,
+                description: values.description,
+                price: values.price,
+                thumbnail: values.thumbnail,
+            });
+
+            router.push('/');
+        } catch (err: any) {
+            toast({
+                variant: "destructive",
+                title: "Uh oh! Something went wrong.",
+                description: err.message,
+            });
+        }
     };
 
     return (
@@ -63,7 +80,6 @@ export default function AddProductForm() {
                             <FormControl>
                                 <Input
                                     placeholder="Title"
-                                    readOnly={!toggleSave}
                                     {...field}
                                 />
                             </FormControl>
@@ -71,14 +87,63 @@ export default function AddProductForm() {
                         </FormItem>
                     )}
                 />
-                <SaveButton
-                    toggleSave={toggleSave}
-                    isSubmitting={form.formState.isSubmitting}
-                    onCancel={() => {
-                        form.reset()
-                        setToggleSave(v => !v)
-                    }}
+                <FormField
+                    control={form.control}
+                    name="description"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Description</FormLabel>
+                            <FormControl>
+                                <Textarea
+                                    placeholder="Description"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
                 />
+                <FormField
+                    control={form.control}
+                    name="price"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Price (RM)</FormLabel>
+                            <FormControl>
+                                <Input 
+                                    type='number   '
+                                    {...field}
+                                    onChange={event => field.onChange(+event.target.value)}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <FormField
+                    control={form.control}
+                    name="thumbnail"
+                    render={({ field }) => (
+                        <FormItem>
+                            <FormLabel>Image URL</FormLabel>
+                            <FormControl>
+                                <Input
+                                    placeholder="Image URL"
+                                    {...field}
+                                />
+                            </FormControl>
+                            <FormMessage />
+                        </FormItem>
+                    )}
+                />
+                <div className='flex justify-center items-center'>
+                    <SaveButton
+                        isSubmitting={form.formState.isSubmitting}
+                        onCancel={() => {
+                            form.reset()
+                        }}
+                    />
+                </div>
             </form>
         </Form>
     );

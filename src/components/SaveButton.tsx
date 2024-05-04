@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/button";
 
 interface SaveButtonProps {
-    toggleSave: boolean,
     isSubmitting: boolean,
     onCancel: () => void
 }
 
-export const SaveButton = ({ toggleSave, isSubmitting, onCancel }: SaveButtonProps) => {
+export const SaveButton = ({ isSubmitting, onCancel }: SaveButtonProps) => {
     return (
-        <div className={`flex flew-row gap-x-4 ${!toggleSave && 'hidden'}`}>
+        <div className={`flex flew-row gap-x-4`}>
             <Button type="submit" className={`w-[100px] ${isSubmitting && 'opacity-60'}`}>Submit</Button>
             <Button
                 type="button"
