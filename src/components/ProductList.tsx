@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 import { toast } from './ui/use-toast';
 import { TProduct } from '@/models/Product';
 import Loading from './Loading';
-import { useProducts } from '@/hooks/useProducts';
+import { useProducts } from '@/hooks/useProducts'
 import ProductItem from './ProductItem';
 
 export default function ProductList() {
