@@ -31,8 +31,8 @@ export default function ProductItem({id} : {id: number}) {
                         src={thumbnail}
                         alt={title}
                         objectFit='cover'
-                        width={200}
-                        height={80}
+                        width={500}
+                        height={500}
                         className={cn(
                             "duration-700 ease-in-out group-hover:opacity-75",
                             isLoading
@@ -59,25 +59,21 @@ export default function ProductItem({id} : {id: number}) {
     
     return (
         <div className="card">
-            <div className='flex flex-col justify-between'>
-                <div className='relative w-auto h-auto'>
-                    <BlurImage
-                        thumbnail={data?.thumbnail}
-                        title={data?.title}
-                        id={data?.id}
-                    />
-                </div>
-                
-
-                <div className="flex flex-col items-center justify-center p-5 w-[200px] h-[200px] space-y-4">
-                    <Link href="`/product/${data?.id}`">
-                        <h3 className="font-semibold line-clamp-2" >{data?.title}</h3>
-                    </Link>
-                    <p className='line-clamp-1 text-sm'>{data?.description}</p>
-                    <p className="mb-2">RM {data?.price}</p>
-                </div>
+            <div className="h-auto w-auto mb-4">
+                <BlurImage
+                    thumbnail={data?.thumbnail}
+                    title={data?.title}
+                    id={data?.id}
+                />
             </div>
             
+            <div className="flex flex-col items-center justify-end p-5 space-y-4">
+                <Link href="`/product/${data?.id}`">
+                    <h3 className="font-semibold line-clamp-2" >{data?.title}</h3>
+                </Link>
+                <p className='line-clamp-1 text-sm'>{data?.description}</p>
+                <p className="mb-2">RM {data?.price}</p>
+            </div>
         </div>
     );
 }

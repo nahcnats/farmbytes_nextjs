@@ -28,7 +28,8 @@ export default function ProductList() {
     if (isLoading || !data) return <Loading />;
     
     return (
-        <div className='flex flex-row flex-wrap gap-8 items-start'>
+        // <div className='flex flex-row flex-wrap gap-8 items-start'>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
             { 
                 data.map((product, index) => (
                     <ProductItem key={`${product.id}`} id={product.id} />
