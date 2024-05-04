@@ -2,7 +2,7 @@ import { TAddProductProps } from '@/types/addProductProps';
 
 export const getProducts = async () => {
     try {
-        const response = await fetch(`${process.env.BASE_URL}/products`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products`);
 
         const { products}  = await response.json();
 
@@ -14,9 +14,11 @@ export const getProducts = async () => {
 
 export const getProduct = async (id: number) => {
     try {
-        const response = await fetch(`${process.env.BASE_URL}/products${id}`);
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products/${id}`);
 
         const product = await response.json();
+
+        // console.log('product', product)
 
         return product;
     } catch (error: any) {
@@ -26,7 +28,7 @@ export const getProduct = async (id: number) => {
 
 export const addProduct = async (data: TAddProductProps) => {
     try {
-        const response = await fetch(`${process.env.BASE_URL}/products}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/products}`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

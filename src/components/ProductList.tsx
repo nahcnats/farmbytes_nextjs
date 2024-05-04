@@ -7,6 +7,7 @@ import { toast } from './ui/use-toast';
 import { TProduct } from '@/models/Product';
 import Loading from './Loading';
 import { useProducts } from '@/hooks/useProducts';
+import ProductItem from './ProductItem';
 
 export default function ProductList() {
     const {
@@ -27,6 +28,12 @@ export default function ProductList() {
     if (isLoading || !data) return <Loading />;
     
     return (
-        <div>ProductList</div>
+        <div className='flex flex-row flex-wrap gap-8 items-start'>
+            { 
+                data.map((product, index) => (
+                    <ProductItem key={`${product.id}`} id={product.id} />
+                ))
+            }
+        </div>
     );
 };
