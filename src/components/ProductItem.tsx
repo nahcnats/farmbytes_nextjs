@@ -2,11 +2,11 @@
 
 import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useProduct } from '@/hooks/useProduct';
 import { cn } from '@/lib/utils';
 import { toast } from './ui/use-toast';
 import Loading from './Loading';
+import Image from 'next/image';
 
 interface BlurImageProps {
     id: number,
@@ -24,22 +24,26 @@ export default function ProductItem({id} : {id: number}) {
     const [isImageLoading, setisImageLoading] = useState(true);
     
     const BlurImage = useCallback(
+        
+
         ({ thumbnail, title, id }: BlurImageProps) => {
+            console.log('img' ,)
+            if (!thumbnail) return;
             return (
                 <Link href={`/product/${id}`}>
-                    <Image
+                    <img
                         src={thumbnail}
                         alt={title}
-                        objectFit='cover'
-                        width={500}
-                        height={500}
+                        // objectFit='cover'
+                        objectFit="contain"
+                        width={800}
+                        height={800}
                         className={cn(
                             "duration-700 ease-in-out group-hover:opacity-75",
-                            isLoading
+                            isImageLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                         )}
-                    onLoadingComplete={() => setisImageLoading(false)}
                     />
                 </Link>
             );
@@ -61,7 +65,7 @@ export default function ProductItem({id} : {id: number}) {
         <div className="card">
             <div className="h-auto w-auto mb-4">
                 <BlurImage
-                    thumbnail={data?.thumbnail}
+                    thumbnail={data?.images[0]}
                     title={data?.title}
                     id={data?.id}
                 />
@@ -69,7 +73,7 @@ export default function ProductItem({id} : {id: number}) {
             
             <div className="flex flex-col items-center justify-end p-5 space-y-4">
                 <Link href="`/product/${data?.id}`">
-                    <h3 className="font-semibold line-clamp-2" >{data?.title}</h3>
+                    <h1 className="font-semibold line-clamp-2" >{data?.title}</h1>
                 </Link>
                 <p className='line-clamp-1 text-sm'>{data?.description}</p>
                 <p className="mb-2">RM {data?.price}</p>
