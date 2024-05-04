@@ -1,12 +1,6 @@
 import { addProduct } from '@/server/actions';
+import { TAddProductProps } from '@/types/addProductProps';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-
-export type TAddProductProps = {
-    title: string,
-    description: string,
-    price: number,
-    thumbnail: string
-}
 
 export const useAddProduct = () => {
     const queryClient = useQueryClient();

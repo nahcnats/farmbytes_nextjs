@@ -1,5 +1,4 @@
-import { TAddProductProps } from "@/hooks/useAddProduct";
-import { TProduct } from "@/models/Product";
+import { TAddProductProps } from '@/types/addProductProps';
 
 export const getProducts = async () => {
     try {
