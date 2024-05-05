@@ -2,6 +2,20 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+First, install packages:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+```
+
+## Start Development Server
+
 First, run the development server:
 
 ```bash
@@ -16,21 +30,20 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# App Summary
+This project was created as a technical assessment for an interview. So the UI is pretty basic.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Screens / Pages
+- Home page that shows list of products accesible by default or by clicking the Home at the nav bar.
+- Product page that shows a product by Id accessible by clicking on the product item from the listing above.
+- Add page for adding new product accesible by clicking the Add at the nav bar..
 
-## Learn More
+## Implmented Core Libraries
+- TanStack Query for fetching, caching, synchronizing and updating server state.
+- React Hook Forms and Zod for forms handling and validation.
+- TailwindCSS & ShadCNUIfor styling
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Challenges
+- This project is my first time using NextJS 14. Have some experience with NextJS 12 previously.
+- Setting up local mock API. This is not something I'm familiar with.
+- Configure Next-Config to allow remote images.
