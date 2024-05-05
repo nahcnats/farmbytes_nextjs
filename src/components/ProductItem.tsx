@@ -9,12 +9,12 @@ import Loading from './Loading';
 import Image from 'next/image';
 
 interface BlurImageProps {
-    id: number,
+    id: string,
     title: string,
     thumbnail: string
 }
 
-export default function ProductItem({id} : {id: number}) {
+export default function ProductItem({id} : {id: string}) {
     const {
         isLoading,
         isError,
@@ -55,16 +55,13 @@ export default function ProductItem({id} : {id: number}) {
         });
     }
 
-    console.log(['fuca'], data)
     if (isLoading || !data) return <Loading />;
-
-    
     
     return (
         <div className="card">
             <div className="h-auto w-auto mb-4">
                 <BlurImage
-                    thumbnail={data?.images[0]}
+                    thumbnail={data?.image}
                     title={data?.title}
                     id={data?.id}
                 />

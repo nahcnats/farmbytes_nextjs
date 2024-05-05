@@ -1,16 +1,1 @@
-[
-    {
-        "id" : "1",
-        "title"	: "iPhone 9",
-        "description" :	"An apple mobile which is nothing like apple",
-        "price"	: 549,
-        "image"	: "https: //cdn.dummyjson.com/product-images/1/thumbnail.jpg"
-    },
-    {
-        "id" : "2",
-        "title"	: "Samsung Universe 9",
-        "description" :	"Samsung's new variant which goes beyond Galaxy to the Universe",
-        "price"	: 1249,
-        "image"	: "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg"
-    }
-]
+[{"id":"1","title":"iPhone 9","description":"An apple mobile which is nothing like apple","price":549,"image":"https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"},{"id":"2","title":"Samsung Universe 9","description":"Samsung's new variant which goes beyond Galaxy to the Universe","price":1249,"image":"https://cdn.dummyjson.com/product-images/3/thumbnail.jpg"},{"id":"1447b3b31f0e604a251b9dc477fa2dda","title":"Test 1","description":"Test 1 data","image":"https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-13.jpg","price":10}]
