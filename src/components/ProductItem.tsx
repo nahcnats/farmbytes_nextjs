@@ -21,13 +21,10 @@ export default function ProductItem({id} : {id: number}) {
         error,
         data
     } = useProduct(id);
-    const [isImageLoading, setisImageLoading] = useState(true);
     
-    const BlurImage = useCallback(
-        
-
+    const BlurImage = useCallback(  
         ({ thumbnail, title, id }: BlurImageProps) => {
-            console.log('img' ,)
+            console.log('imgdata' ,)
             if (!thumbnail) return;
             return (
                 <Link href={`/product/${id}`}>
@@ -39,7 +36,7 @@ export default function ProductItem({id} : {id: number}) {
                         height={800}
                         className={cn(
                             "duration-700 ease-in-out group-hover:opacity-75",
-                            isImageLoading
+                            isLoading
                                 ? "scale-110 blur-2xl grayscale"
                                 : "scale-100 blur-0 grayscale-0"
                         )}
@@ -47,7 +44,7 @@ export default function ProductItem({id} : {id: number}) {
                 </Link>
             );
         },
-        [isImageLoading]
+        [isLoading]
     );
 
     if (isError) {
@@ -58,7 +55,10 @@ export default function ProductItem({id} : {id: number}) {
         });
     }
 
+    console.log(['fuca'], data)
     if (isLoading || !data) return <Loading />;
+
+    
     
     return (
         <div className="card">

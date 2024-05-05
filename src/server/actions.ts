@@ -5,7 +5,10 @@ export const getProducts = async () => {
     try {
         const response = await server.get(`/products/?categoryId=18`);
 
-        const products = response.data;
+        const products = await response.data;
+
+        console.log('fuck', products)
+
 
         return products;
     } catch (error: any) {
