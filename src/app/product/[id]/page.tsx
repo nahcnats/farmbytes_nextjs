@@ -15,7 +15,7 @@ export default function ProductPage({params} : {params: {id: number}}) {
             </Link>
 
             <div className='flex flex-1 justify-center'>
-                <ProductItem id={id} />
+                <ProductItem id={`${id}`} />
             </div>
 
             
